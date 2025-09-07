@@ -1,0 +1,49 @@
+---
+layout: null
+---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        min-height: 100vh;
+      }
+      .gif-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+      .gif-gallery img {
+        display: block;
+        width: 268px;
+        height: 151px;
+        object-fit: contain;
+        background: #fff;
+        box-shadow: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gif-gallery">
+      {% assign gifs = site.static_files | where_exp: "file", "file.path contains '/sion/'" %}
+      {% for gif in gifs %}
+        {% if gif.extname == ".gif" %}
+          <img src="{{ gif.path | relative_url }}" alt="">
+        {% endif %}
+      {% endfor %}
+    </div>
+  </body>
+</html>
