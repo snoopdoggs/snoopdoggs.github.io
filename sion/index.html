@@ -1,26 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-    <h1>gifs</h1>
-    <div id="gif-gallery"></div>
-    <script>
-        fetch('https://api.github.com/repos/snoopdoggs/snoopdoggs.github.io/sion')
-            .then(response => response.json())
-            .then(files => {
-                const gallery = document.getElementById('gif-gallery');
-                files.forEach(file => {
-                    if (file.name.endsWith('.gif')) {
-                        const img = document.createElement('img');
-                        img.src = file.download_url;
-                        img.alt = file.name;
-                        img.style = "max-width:258px; max-height:161px; margin:10px;";
-                        gallery.appendChild(img);
-                    }
-                });
-            });
-    </script>
-</body>
-</html>
+---
+layout: default
+title: GIF Gallery
+---
+
+<h1>GIF Gallery</h1>
+<div>
+  {% assign gif_files = site.static_files | where_exp: "file", "file.path contains '/gifs/'" %}
+  {% for gif in gif_files %}
+    {% if gif.extname == ".gif" %}
+      <div style="display:inline-block; margin:10px;">
+        <img src="{{ gif.path }}" alt="{{ gif.name }}" style="max-width:200px; max-height:200px;">
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
