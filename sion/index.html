@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GIF Gallery</title>
+    <title></title>
 </head>
 <body>
-    <h1>GIF Gallery</h1>
+    <h1>gifs</h1>
     <div id="gif-gallery"></div>
     <script>
-        fetch('https://api.github.com/repos/snoopdoggs/snoopdoggs.github.io/contents/gifs')
+        fetch('https://api.github.com/repos/snoopdoggs/snoopdoggs.github.io/sion')
             .then(response => response.json())
             .then(files => {
                 const gallery = document.getElementById('gif-gallery');
@@ -16,7 +16,7 @@
                         const img = document.createElement('img');
                         img.src = file.download_url;
                         img.alt = file.name;
-                        img.style = "max-width:200px; max-height:200px; margin:10px;";
+                        img.style = "max-width:258px; max-height:161px; margin:10px;";
                         gallery.appendChild(img);
                     }
                 });
