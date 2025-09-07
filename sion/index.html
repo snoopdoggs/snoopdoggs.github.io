@@ -1,15 +1,15 @@
 ---
 layout: default
-title: GIF Gallery
+title: Sion Gallery
 ---
 
-<h1>GIF Gallery</h1>
+<h1>Sion Gallery</h1>
 <div>
-  {% assign gif_files = site.static_files | where_exp: "file", "file.path contains '/gifs/'" %}
-  {% for gif in gif_files %}
-    {% if gif.extname == ".gif" %}
+  {% assign sion_files = site.static_files | where_exp: "file", "file.path contains '/sion/'" %}
+  {% for sion in sion_files %}
+    {% if sion.extname == ".gif" %}
       <div style="display:inline-block; margin:10px;">
-        <img src="{{ gif.path }}" alt="{{ gif.name }}" style="max-width:200px; max-height:200px;">
+        <img src="{{ sion.path }}" alt="{{ sion.name }}" style="max-width:200px; max-height:200px;">
       </div>
     {% endif %}
   {% endfor %}
