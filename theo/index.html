@@ -34,7 +34,7 @@ layout: null
   </head>
   <body>
     <div class="gif-gallery">
-      {% assign gifs = site.static_files | where_exp: "file", "file.path contains '/the/'" %}
+      {% assign gifs = site.static_files | where_exp: "file", "file.path contains '/theo/'" %}
       {% for gif in gifs %}
         {% if gif.extname == ".gif" %}
           <img src="{{ gif.path | relative_url }}" alt="">
