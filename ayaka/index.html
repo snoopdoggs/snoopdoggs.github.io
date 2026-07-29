@@ -4,150 +4,106 @@ layout: null
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>jasgifs</title>
-  <link rel="shortcut icon" href="{Favicon}">
-  <link rel="alternate" type="application/rss+xml" href="{RSS}">
+  <head>
+    <meta charset="UTF-8">
+    <title>jasgifs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        font-family: 'Montserrat', system-ui, Arial, sans-serif;
+        color: #111;
+      }
 
-  <style>
-    /* IMPORT FONTS HERE! */
-    @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+      /* Page container to add side margins and center content */
+      .container {
+        max-width: 1900px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
 
-    /* EASY CUSTOMIZATIONS BELOW */
-    :root {
-      /* fonts */
-      --accentfont:lexend;
-      --bodyfont:poppins;
-      /* colors */
-      --background:#f2f0ef;
-      --borders:#e3e3e3;
-      --text:#0c0c0c;
-      --title:#f2a65a;
-      --accent:#9e0059;
-      --links:#00a896;
-      /* miscellaneous */
-      --textalign:center;
-      --textsize:10px;
-      --titlesize:25px;
-    }
+      /* Header with title + subtitle */
+      .site-header {
+        text-align: center;
+        margin-top: 40px;      /* header a bit lower */
+        margin-bottom: 24px;   /* smaller space between header and gifs */
+      }
+      .site-header h1 {
+        font-family: 'Montserrat', system-ui, Arial, sans-serif;
+        font-size: 20px;      /* requested size */
+        line-height: 1.2;
+        margin: 0;
+        font-weight: 600;
+      }
+      .site-header .subtitle {
+        font-size: 10px;
+        margin: 6px 0 0;
+        color: #666;
+        font-weight: 300;
+      }
 
-    /* hidden scrollbar for multiple browsers */
-    ::-webkit-scrollbar { display: none; }
-    @supports (-ms-ime-align: auto) { /* IE tweak if ever needed */ }
-    /* PAGE STRUCTURE */
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: var(--background);
-      text-align: var(--textalign);
-      font-family: var(--bodyfont);
-      color: var(--text);
-      font-size: var(--textsize);
-    }
+      /* Gif gallery layout: 6 columns on wide screens */
+      .gif-gallery {
+        display: grid;
+        grid-template-columns: repeat(6, 268px); /* six fixed columns */
+        justify-content: center;
+        gap: 6px; /* smaller spacing between GIF items */
+        padding: 0;
+        margin: 0;
+      }
 
-    a { color: var(--links); }
-    b, strong { color: var(--accent); }
+      /* Each gif item provides predictable spacing */
+      .gif-item {
+        display: block;
+        background: #fff;
+      }
 
-    h1 {
-      font-family: var(--accentfont);
-      color: var(--title);
-      text-align: var(--textalign);
-      font-size: var(--titlesize);
-      margin: 0;
-      padding: 0;
-    }
+      /* Image sizing: fills the column width but keeps a consistent display height */
+      .gif-gallery img {
+        display: block;
+        width: 100%;
+        height: 151px;
+        object-fit: contain;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: #fff;
+      }
 
-    #info {
-      width:100%;
-      height:130px;
-      background-color:var(--background);
-      padding-bottom:10px;
-      padding-top:10px;
-      text-align:var(--textalign);
-      line-height:20px;
-      position:fixed;
-      top:0;
-      z-index:100;
-    }
+      /* Responsive fallbacks: reduce the number of columns on smaller screens */
+      @media (max-width: 1750px) {
+        .gif-gallery { grid-template-columns: repeat(4, 1fr); }
+        .gif-gallery img { height: 140px; }
+      }
+      @media (max-width: 1100px) {
+        .gif-gallery { grid-template-columns: repeat(3, 1fr); }
+        .gif-gallery img { height: 130px; }
+      }
+      @media (max-width: 640px) {
+        .gif-gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .gif-gallery img { width: 100%; height: auto; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <h1>ayaka  arai  (  niziu  ).</h1>
+        <div class="subtitle">do  not  redistribute,  edit,  or  use  in  krp</div>
+      </header>
 
-    #container {
-      width:100%;
-      min-height:calc(100vh - 140px);
-      position:relative;
-      z-index:1;
-      top:140px;
-      padding-bottom:40px;
-      box-sizing:border-box;
-    }
-
-    /* Scope gallery styles to the gallery container so they don't collide with other site CSS */
-    .gif-gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0;
-      padding: 0;
-    }
-
-    .gif-gallery img {
-      display: block;
-      width: 268px;
-      height: 151px;
-      object-fit: contain;
-      margin: 0;
-      padding: 0;
-      border: none;
-      background: #fff;
-    }
-
-    /* Keep Dayslily's gif styling (but scoped to #container to avoid global img overrides) */
-    #container img {
-      margin:5px;
-      padding:0;
-      border:1px solid var(--borders);
-    }
-
-    /* optional: hide scrollbar on container if it scrolls */
-    #container { -ms-overflow-style: none; scrollbar-width: none; }
-
-
-#info {
-  padding-top: 22px;
-}
-#info h1 {
-  margin: 0;
-  font-size: 35px;
-  line-height: 1;
-}
-
-  </style>
-</head>
-
-<body>
-  <div id="info">
-    <h1>arai ayaka (niziu)</h1>
-    <p>do not repost, edit, or use for krp</p>
-  </div>
-
-  <div id="container">
-    <!-- EDIT: PASTE GIFS BELOW HERE -->
-    <!--
-      The Jekyll loop below will insert every .gif from the folder you choose.
-      Change '/sullyoon/' to the folder path you want to list (example: '/mygifs/folder1/').
-    -->
-    <div class="gif-gallery">
-      {% assign gifs = site.static_files | where_exp: "file", "file.path contains '/ayaka/'" %}
-      {% for gif in gifs %}
-        {% if gif.extname == ".gif" %}
-          <img src="{{ gif.path | relative_url }}" alt="{{ gif.name }}" loading="lazy" />
-        {% endif %}
-      {% endfor %}
-      <!-- If you also want to manually paste individual <img> entries, you can add them here after the loop. -->
-      <!-- Example manual fallback: -->
-      <!-- <img src="https://64.media.tumblr.com/.../example.gif" alt="example" loading="lazy"> -->
+      <div class="gif-gallery">
+        {% assign gifs = site.static_files | where_exp: "file", "file.path contains '/ayaka/'" %}
+        {% for gif in gifs %}
+          {% if gif.extname == ".gif" %}
+            <div class="gif-item">
+              <img src="{{ gif.path | relative_url }}" alt="{{ gif.name }}">
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
-    <!-- EDIT: PASTE GIFS ABOVE HERE -->
-  </div>
-</body>
+  </body>
 </html>
