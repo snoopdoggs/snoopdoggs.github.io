@@ -1,0 +1,109 @@
+---
+layout: null
+---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>jasgifs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        font-family: 'Montserrat', system-ui, Arial, sans-serif;
+        color: #111;
+      }
+
+      /* Page container to add side margins and center content */
+      .container {
+        max-width: 1900px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Header with title + subtitle */
+      .site-header {
+        text-align: center;
+        margin-top: 40px;      /* header a bit lower */
+        margin-bottom: 24px;   /* smaller space between header and gifs */
+      }
+      .site-header h1 {
+        font-family: 'Montserrat', system-ui, Arial, sans-serif;
+        font-size: 20px;      /* requested size */
+        line-height: 1.2;
+        margin: 0;
+        font-weight: 600;
+      }
+      .site-header .subtitle {
+        font-size: 10px;
+        margin: 6px 0 0;
+        color: #666;
+        font-weight: 300;
+      }
+
+      /* Gif gallery layout: 6 columns on wide screens */
+      .gif-gallery {
+        display: grid;
+        grid-template-columns: repeat(6, 268px); /* six fixed columns */
+        justify-content: center;
+        gap: 6px; /* smaller spacing between GIF items */
+        padding: 0;
+        margin: 0;
+      }
+
+      /* Each gif item provides predictable spacing */
+      .gif-item {
+        display: block;
+        background: #fff;
+      }
+
+      /* Image sizing: fills the column width but keeps a consistent display height */
+      .gif-gallery img {
+        display: block;
+        width: 100%;
+        height: 151px;
+        object-fit: contain;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: #fff;
+      }
+
+      /* Responsive fallbacks: reduce the number of columns on smaller screens */
+      @media (max-width: 1750px) {
+        .gif-gallery { grid-template-columns: repeat(4, 1fr); }
+        .gif-gallery img { height: 140px; }
+      }
+      @media (max-width: 1100px) {
+        .gif-gallery { grid-template-columns: repeat(3, 1fr); }
+        .gif-gallery img { height: 130px; }
+      }
+      @media (max-width: 640px) {
+        .gif-gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .gif-gallery img { width: 100%; height: auto; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <h1>kim  haram  (  billlie  ).</h1>
+        <div class="subtitle">do  not  redistribute,  edit,  or  use  in  krp</div>
+      </header>
+
+      <div class="gif-gallery">
+        {% assign gifs = site.static_files | where_exp: "file", "file.path contains '/haram/'" %}
+        {% for gif in gifs %}
+          {% if gif.extname == ".gif" %}
+            <div class="gif-item">
+              <img src="{{ gif.path | relative_url }}" alt="{{ gif.name }}">
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
