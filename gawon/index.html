@@ -95,7 +95,7 @@ layout: null
       </header>
 
       <div class="gif-gallery">
-        {% assign gifs = site.static_files | where_exp: "file", "file.path contains '/ayaka/'" %}
+        {% assign gifs = site.static_files | where_exp: "file", "file.path contains '/gawon/'" %}
         {% for gif in gifs %}
           {% if gif.extname == ".gif" %}
             <div class="gif-item">
