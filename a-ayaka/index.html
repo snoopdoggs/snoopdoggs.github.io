@@ -7,7 +7,7 @@ layout: null
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>gifs</title>
+    <title>jasgifs</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
       html, body {
@@ -18,14 +18,12 @@ layout: null
         color: #111;
       }
 
-      /* Page container to add side margins and center content */
       .container {
         max-width: 1700px;
         margin: 0 auto;
         padding: 0 24px;
       }
 
-      /* Header with title + subtitle */
       .site-header {
         text-align: center;
         margin-top: 40px;
@@ -45,8 +43,6 @@ layout: null
         font-weight: 300;
       }
 
-      /* Gif gallery layout: 268px gifs that wrap and stay centered,
-         including the last (partial) row. */
       .gif-gallery {
         display: flex;
         flex-wrap: wrap;
@@ -63,7 +59,6 @@ layout: null
         background: #fff;
       }
 
-      /* Every gif box keeps the same proportions at any width */
       .gif-gallery img {
         display: block;
         width: 100%;
@@ -75,7 +70,6 @@ layout: null
         border: none;
       }
 
-      /* Phones: two per row */
       @media (max-width: 640px) {
         .container { padding: 0 12px; }
         .gif-gallery { gap: 4px; }
